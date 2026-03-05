@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# ROS2 / colcon
+edragorn_ws/build/
+edragorn_ws/install/
+edragorn_ws/log/
+
+# Editor / tooling
+.vscode/
+.cursor/
+.cursor-server/
