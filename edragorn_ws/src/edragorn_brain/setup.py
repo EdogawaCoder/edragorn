@@ -24,6 +24,8 @@ setup(
     },
     entry_points={
         'console_scripts': [
+            'brain_node = edragorn_brain.core.brain_node:main',
+            'perception_node = edragorn_brain.perception.perception_node:main',
         ],
     },
 )

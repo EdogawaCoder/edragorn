@@ -8,9 +8,9 @@ __pycache__/
 venv/
 
 # ROS2 / colcon
-edragorn_ws/build/
-edragorn_ws/install/
-edragorn_ws/log/
+build/
+install/
+log/
 
 # Editor / tooling
 .vscode/
@@ -18,7 +18,6 @@ edragorn_ws/log/
 .cursor-server/
 
 # Byte-compiled / optimized / DLL files
-__pycache__/
 *.py[codz]
 *$py.class
 
