@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import rclpy 
 from edragorn_brain.core.states import BrainState
 from rclpy.node import Node
@@ -25,11 +26,26 @@ class BrainNode(Node):
             10
         )
 
+        self.command_publisher = self.create_publisher(
+            String,
+            'brain_commands',
+            10
+        )
+
+
     def camera_callback(self, msg):
         self.last_perception = msg.data
         self.target_visible = (msg.data == "target_detected")
         self.get_logger().info(f'Received from perception: {msg.data}')
         self.get_logger().info(f'target_visible={self.target_visible}')
+
+    def publish_command(self, command):
+        msg = String()
+        msg.data = command
+
+        self.get_logger().info(f'Publishing command:{command}')
+        self.command_publisher.publish(msg)
+
 
 
     def think(self):
@@ -52,6 +68,14 @@ class BrainNode(Node):
 
         elif self.state == BrainState.tracking:
             self.get_logger().info("STATUS: TRACKING...")
+
+            self.publish_command("follow_target")
+
+            if not self.target_visible:
+                self.get_logger().info("TARGET LOST -> SEARCHING")
+                self.publish_command("search_target")
+                self.state = BrainState.searching
+                
 
         
 def main(args=None):

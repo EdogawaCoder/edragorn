@@ -26,6 +26,7 @@ setup(
         'console_scripts': [
             'brain_node = edragorn_brain.core.brain_node:main',
             'perception_node = edragorn_brain.perception.perception_node:main',
+            'action_node = edragorn_brain.action.action_node:main'
         ],
     },
 )
